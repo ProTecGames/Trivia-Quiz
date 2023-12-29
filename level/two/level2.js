@@ -23,13 +23,26 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Function to display question
+    // Function to display question and options
     function displayQuestion(questionData) {
         const questionContainer = document.getElementById('questionContainer');
         const questionElement = document.createElement('div');
         questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'options-container';
+
+        // Display "True" and "False" options
+        ['True', 'False'].forEach(option => {
+            const optionButton = document.createElement('button');
+            optionButton.innerText = option;
+            optionButton.addEventListener('click', () => handleAnswer(option.toLowerCase() === 'true', questionData.correctAnswer));
+            optionsContainer.appendChild(optionButton);
+        });
+
         questionContainer.innerHTML = '';
         questionContainer.appendChild(questionElement);
+        questionContainer.appendChild(optionsContainer);
     }
 
     // Function to handle user's answer
@@ -37,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         clearInterval(timerInterval);
 
         // Check if the answer is correct
-        if (selectedOption === correctAnswer.toString()) {
+        if (selectedOption === correctAnswer) {
             handleCorrectAnswer();
         } else {
             handleWrongAnswer(correctAnswer);
