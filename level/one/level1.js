@@ -25,21 +25,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to display question and options
     function displayQuestion(questionData) {
-        const questionContainer = document.getElementById('questionContainer');
-        const questionElement = document.createElement('div');
-        questionElement.innerHTML = `<p>${questionData.question}</p>`;
+    const questionContainer = document.getElementById('questionContainer');
+    const questionElement = document.createElement('div');
+    questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
 
-        // Display options
-        questionData.options.forEach((option, index) => {
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'options-container';
+
+    // Display options in a 2x2 grid
+    for (let i = 0; i < 2; i++) {
+        const row = document.createElement('div');
+        row.className = 'option-row';
+
+        for (let j = 0; j < 2; j++) {
+            const optionIndex = i * 2 + j;
             const optionButton = document.createElement('button');
-            optionButton.innerText = option;
-            optionButton.addEventListener('click', () => handleAnswer(option, questionData.correctAnswer));
-            questionElement.appendChild(optionButton);
-        });
+            optionButton.innerText = questionData.options[optionIndex];
+            optionButton.addEventListener('click', () => handleAnswer(questionData.options[optionIndex], questionData.correctAnswer));
+            row.appendChild(optionButton);
+        }
 
-        questionContainer.innerHTML = '';
-        questionContainer.appendChild(questionElement);
+        optionsContainer.appendChild(row);
     }
+
+    questionContainer.innerHTML = '';
+    questionContainer.appendChild(questionElement);
+    questionContainer.appendChild(optionsContainer);
+}
+
 
     // Function to handle user's answer
     function handleAnswer(selectedOption, correctAnswer) {
