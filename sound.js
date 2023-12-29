@@ -20,4 +20,4 @@ function playSound(soundUrl) {
 }
 
 
-playSound('button-click.mp3');
+playSound('tap.mp3');
