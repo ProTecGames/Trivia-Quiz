@@ -30,24 +30,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const questionElement = document.createElement('div');
         questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
 
-        const optionsContainer = document.createElement('div');
-        optionsContainer.className = 'options-container';
+        const optionsContainer = document.createElement('ul');
+        optionsContainer.className = 'options-list';
 
-        // Display options in a 2x2 grid
-        for (let i = 0; i < 2; i++) {
-            const row = document.createElement('div');
-            row.className = 'option-row';
-
-            for (let j = 0; j < 2; j++) {
-                const optionIndex = i * 2 + j;
-                const optionButton = document.createElement('button');
-                optionButton.innerText = questionData.options[optionIndex];
-                optionButton.addEventListener('click', () => handleAnswer(questionData.options[optionIndex], questionData.correctAnswer));
-                row.appendChild(optionButton);
-            }
-
-            optionsContainer.appendChild(row);
-        }
+        // Display options as a vertical list
+        questionData.options.forEach((option, index) => {
+            const optionItem = document.createElement('li');
+            const optionButton = document.createElement('button');
+            optionButton.innerText = option;
+            optionButton.addEventListener('click', () => handleAnswer(option, questionData.correctAnswer));
+            optionItem.appendChild(optionButton);
+            optionsContainer.appendChild(optionItem);
+        });
 
         questionContainer.innerHTML = '';
         questionContainer.appendChild(questionElement);
