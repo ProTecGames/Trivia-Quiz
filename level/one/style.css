@@ -3,11 +3,16 @@ audio {
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Change to Roboto font */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #000;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center the content vertically */
+    height: 100vh;
 }
 
 header {
@@ -30,14 +35,13 @@ header {
 
 .level-timeline {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
 button {
-    font-family: 'Roboto', sans-serif; /* Change to Roboto font */
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -45,7 +49,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-bottom: 10px;
 }
 
 button:disabled {
@@ -73,7 +78,21 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-footer {
+/* Animation for points increase or decrease */
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.points {
+    animation: fade 0.3s ease;
+}
+
+.footer {
     background-color: #333;
     color: #fff;
     text-align: center;
