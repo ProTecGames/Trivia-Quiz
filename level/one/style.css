@@ -8,6 +8,10 @@ body {
     padding: 0;
     background-color: #000;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 header {
@@ -15,12 +19,6 @@ header {
     color: #fff;
     padding: 10px;
     text-align: center;
-}
-
-.user-info {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
 }
 
 /* Add this style to strikeout text */
@@ -87,12 +85,28 @@ button:hover {
     animation: fade 0.3s ease; /* Apply fade animation to points */
 }
 
-.footer {
-    background-color: #333;
+/* Circle behind the timer */
+.timer-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.timer-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
     color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
