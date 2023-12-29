@@ -7,19 +7,25 @@
     <style>
         body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Light gray background */
+    background: linear-gradient(to bottom, #000000, #333333); /* Black gradient background */
+    color: #ffffff; /* White text color */
+}
+
+header {
+    padding: 20px;
+    text-align: center;
 }
 
 .container {
-    background-color: #fff; /* White container background */
+    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
 
 .question {
@@ -44,28 +50,19 @@ button {
     margin: 5px;
     padding: 10px;
     font-size: 14px;
-    background-color: #3498db; /* Blue button background */
-    color: #fff; /* White text color */
-    border: 1px solid #2980b9; /* Border color */
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #2980b9;
     border-radius: 5px;
     cursor: pointer;
 }
 
-/* Styles for alert dialogs */
-
-.alert-dialog {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+footer {
     padding: 10px;
-    background-color: #ffcccc;
-    color: #ff0000;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    z-index: 999;
-    display: none;
+    text-align: center;
+    background: linear-gradient(to top, #000000, #333333);
 }
+
     </style>
     <script defer src="../../level/one/level1.js"></script>
     <title>Level 1: Trivia Base</title>
