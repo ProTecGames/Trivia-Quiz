@@ -26,7 +26,8 @@ header {
 
 .level-timeline {
     display: flex;
-    flex-direction: column; /* Display buttons in a vertical line */
+    flex-direction: row; /* Arrange buttons in a row */
+    justify-content: space-between; /* Add space between buttons */
     align-items: center;
     padding: 20px;
 }
