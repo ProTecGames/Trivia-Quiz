@@ -1,14 +1,13 @@
+audio {
+    display: none;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #000;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
-    min-height: 100vh;
 }
 
 header {
@@ -29,29 +28,11 @@ header {
     text-decoration: line-through;
 }
 
-.container {
-    background-color: #fff;
+.level-timeline {
+    display: flex;
+    flex-direction: column; /* Change to column */
+    align-items: center; /* Center buttons */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text within the container */
-}
-
-.question {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.options-container {
-    display: flex;
-    flex-direction: column; /* Arrange options in a column */
-    align-items: center; /* Center options horizontally */
-}
-
-.option-row {
-    display: flex;
-    margin-bottom: 10px;
 }
 
 button {
@@ -63,7 +44,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
+    margin-bottom: 10px; /* Add margin between buttons */
 }
 
 button:disabled {
@@ -102,7 +84,7 @@ button:hover {
 }
 
 .points {
-    animation: fade 0.3s ease;
+    animation: fade 0.3s ease; /* Apply fade animation to points */
 }
 
 .footer {
