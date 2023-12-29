@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             optionButton.innerText = option;
             optionButton.addEventListener('click', () => handleAnswer(option.toLowerCase() === 'true', questionData.correctAnswer));
             optionsContainer.appendChild(optionButton);
+            optionsContainer.appendChild(document.createElement('br')); // Add space between options
         });
 
         questionContainer.innerHTML = '';
