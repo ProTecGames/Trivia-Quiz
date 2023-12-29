@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to play button click sound
     function playButtonClickSound() {
-        const buttonClickSound = new Audio('button-click.mp3'); // Replace with your sound file
+        const buttonClickSound = new Audio('tap.mp3'); 
         buttonClickSound.play();
     }
 });
