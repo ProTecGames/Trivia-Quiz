@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Example: Populate the level timeline dynamically with buttons
     const levelTimeline = document.getElementById('levelTimeline');
     const level1Button = createLevelButton(1, '/level/one/one.html', true);
-    const level2Button = createLevelButton(2, '/level/two.html', points > 20);
-    const level3Button = createLevelButton(3, '/level/three.html', points > 50);
+    const level2Button = createLevelButton(2, '/level/two/two.html', points > 20);
+    const level3Button = createLevelButton(3, '/level/three/three.html', points > 50);
 
     levelTimeline.appendChild(level1Button);
     levelTimeline.appendChild(level2Button);
