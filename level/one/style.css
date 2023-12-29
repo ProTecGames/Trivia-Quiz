@@ -9,7 +9,7 @@ body {
     background-color: #000;
     color: #fff;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Set to column layout */
     align-items: center;
     height: 100vh;
 }
@@ -19,6 +19,7 @@ header {
     color: #fff;
     padding: 10px;
     text-align: center;
+    width: 100%; /* Take full width */
 }
 
 /* Add this style to strikeout text */
@@ -31,6 +32,7 @@ header {
     flex-direction: column; /* Change to column */
     align-items: center; /* Center buttons */
     padding: 20px;
+    flex: 1; /* Allow the timeline to take remaining space */
 }
 
 button {
@@ -55,8 +57,9 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Basic styling for alert dialogs */
-.alert-dialog {
+/* Basic styling for modal pop-up box */
+.modal {
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -67,8 +70,18 @@ button:hover {
     border: 1px solid #dddddd;
     border-radius: 5px;
     z-index: 999;
-    display: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
 }
 
 /* Animation for points increase or decrease */
@@ -109,4 +122,12 @@ button:hover {
     font-size: 24px;
     font-weight: bold;
     color: #fff;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%; /* Take full width */
 }
