@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to start the timer
     function startTimer() {
         const timerElement = document.getElementById('timer');
-        let timerSeconds = 90;
+        let timerSeconds = 60;
         timerInterval = setInterval(function () {
             timerElement.innerText = timerSeconds;
             if (timerSeconds === 0) {
