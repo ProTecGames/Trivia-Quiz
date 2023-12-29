@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     let points = 0;
     let questionsAttempted = 0;
+    let timerInterval;
 
     // Function to fetch question data from Open Trivia DB API
     function fetchQuestion() {
@@ -25,81 +26,66 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to display question and options
     function displayQuestion(questionData) {
-    const questionContainer = document.getElementById('questionContainer');
-    const questionElement = document.createElement('div');
-    questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
+        const questionContainer = document.getElementById('questionContainer');
+        const questionElement = document.createElement('div');
+        questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
 
-    const optionsContainer = document.createElement('div');
-    optionsContainer.className = 'options-container';
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'options-container';
 
-    // Display options in a 2x2 grid
-    for (let i = 0; i < 2; i++) {
-        const row = document.createElement('div');
-        row.className = 'option-row';
+        // Display options in a 2x2 grid
+        for (let i = 0; i < 2; i++) {
+            const row = document.createElement('div');
+            row.className = 'option-row';
 
-        for (let j = 0; j < 2; j++) {
-            const optionIndex = i * 2 + j;
-            const optionButton = document.createElement('button');
-            optionButton.innerText = questionData.options[optionIndex];
-            optionButton.addEventListener('click', () => handleAnswer(questionData.options[optionIndex], questionData.correctAnswer));
-            row.appendChild(optionButton);
+            for (let j = 0; j < 2; j++) {
+                const optionIndex = i * 2 + j;
+                const optionButton = document.createElement('button');
+                optionButton.innerText = questionData.options[optionIndex];
+                optionButton.addEventListener('click', () => handleAnswer(questionData.options[optionIndex], questionData.correctAnswer));
+                row.appendChild(optionButton);
+            }
+
+            optionsContainer.appendChild(row);
         }
 
-        optionsContainer.appendChild(row);
+        questionContainer.innerHTML = '';
+        questionContainer.appendChild(questionElement);
+        questionContainer.appendChild(optionsContainer);
     }
-
-    questionContainer.innerHTML = '';
-    questionContainer.appendChild(questionElement);
-    questionContainer.appendChild(optionsContainer);
-}
-
 
     // Function to handle user's answer
     function handleAnswer(selectedOption, correctAnswer) {
         clearInterval(timerInterval);
 
-        // Check if the answer is correct
         if (selectedOption === correctAnswer) {
             handleCorrectAnswer();
         } else {
             handleWrongAnswer(correctAnswer);
         }
 
-        // Fetch and display the next question
         fetchAndDisplayNextQuestion();
     }
 
     // Function to handle correct answer
     function handleCorrectAnswer() {
-        const timerElement = document.getElementById('timer');
-        const timerSeconds = parseInt(timerElement.innerText);
-
-        // Increment points based on timer
+        const timerSeconds = parseInt(document.getElementById('timer').innerText);
         const incrementPoints = timerSeconds > 30 ? 5 : 1;
         points += incrementPoints;
 
-        // Update points
         updatePoints();
-
-        // Show dialog for correct answer
         showInfoDialog(`Correct! You earned ${incrementPoints} points.`);
     }
 
     // Function to handle wrong answer
     function handleWrongAnswer(correctAnswer) {
-        // Show dialog for wrong answer
         showErrorDialog(`Wrong! Correct answer is: ${correctAnswer}`);
-
-        // Deduct points by -3
         decreasePointsByThree();
     }
 
     // Function to handle timeout
     function handleTimeout(correctAnswer) {
-        // Show dialog for timeout
         showErrorDialog(`Time's up! Correct answer is: ${correctAnswer}`);
-
-        // Deduct points by -2
         decreasePointsByTwo();
     }
 
