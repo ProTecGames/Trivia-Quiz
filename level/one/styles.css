@@ -1,9 +1,10 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
+    font-family: 'Arial', sans-serif;
 }
 
 header {
@@ -94,17 +95,17 @@ button:hover {
 
 .alert-dialog {
     position: fixed;
-    top: 50%;
+    top: 10px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: #ffcccc; /* Light red background */
+    color: #ff0000; /* Red text color */
+    border: 1px solid #ff0000; /* Red border */
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: none;
+    z-index: 999;
+    display: none; /* Hidden by default */
 }
-
 footer {
     background-color: #333;
     color: #fff;
@@ -123,9 +124,18 @@ footer {
     margin-bottom: 10px;
 }
 
+
 .options-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    flex: 0 0 120px; /* Adjust the width as needed */
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
 }
 
 .option-row {
@@ -133,9 +143,3 @@ footer {
     margin-bottom: 10px;
 }
 
-button {
-    flex: 1;
-    margin: 5px;
-    padding: 10px;
-    font-size: 14px;
-}
