@@ -30,56 +30,70 @@ document.addEventListener('DOMContentLoaded', function () {
         const questionElement = document.createElement('div');
         questionElement.innerHTML = `<p class="question">${questionData.question}</p>`;
 
-        const optionsContainer = document.createElement('ul');
-        optionsContainer.className = 'options-list';
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
 
-        // Display options as a vertical list
-        questionData.options.forEach((option, index) => {
+        // Display options in a vertical list
+        questionData.options.forEach(option => {
             const optionItem = document.createElement('li');
             const optionButton = document.createElement('button');
             optionButton.innerText = option;
             optionButton.addEventListener('click', () => handleAnswer(option, questionData.correctAnswer));
             optionItem.appendChild(optionButton);
-            optionsContainer.appendChild(optionItem);
+            optionsList.appendChild(optionItem);
         });
 
         questionContainer.innerHTML = '';
         questionContainer.appendChild(questionElement);
-        questionContainer.appendChild(optionsContainer);
+        questionContainer.appendChild(optionsList);
     }
 
     // Function to handle user's answer
     function handleAnswer(selectedOption, correctAnswer) {
         clearInterval(timerInterval);
 
+        // Check if the answer is correct
         if (selectedOption === correctAnswer) {
             handleCorrectAnswer();
         } else {
             handleWrongAnswer(correctAnswer);
         }
 
+        // Fetch and display the next question
         fetchAndDisplayNextQuestion();
     }
 
     // Function to handle correct answer
     function handleCorrectAnswer() {
-        const timerSeconds = parseInt(document.getElementById('timer').innerText);
+        const timerElement = document.getElementById('timer');
+        const timerSeconds = parseInt(timerElement.innerText);
+
+        // Increment points based on timer
         const incrementPoints = timerSeconds > 30 ? 5 : 1;
         points += incrementPoints;
 
+        // Update points
         updatePoints();
+
+        // Show info modal for correct answer
         showInfoDialog(`Correct! You earned ${incrementPoints} points.`);
     }
 
     // Function to handle wrong answer
     function handleWrongAnswer(correctAnswer) {
+        // Show error modal for wrong answer
         showErrorDialog(`Wrong! Correct answer is: ${correctAnswer}`);
+
+        // Deduct points by -3
         decreasePointsByThree();
     }
 
     // Function to handle timeout
-    function handleTimeout(correctAnswer) {
-        showErrorDialog(`Time's up! Correct answer is: ${correctAnswer}`);
+    function handleTimeout() {
+        // Show error modal for timeout
+        showErrorDialog('Time\'s up!');
+
+        // Deduct points by -2
         decreasePointsByTwo();
     }
 
@@ -135,31 +149,32 @@ document.addEventListener('DOMContentLoaded', function () {
         attemptedElement.innerText = `Questions Attempted: ${questionsAttempted}`;
     }
 
-    // Function to show an info dialog
+    // Function to show an info modal
     function showInfoDialog(message) {
-        const infoDialog = createDialog('info-dialog', message);
-        document.body.appendChild(infoDialog);
+        const infoModal = createModal('info-modal', message);
+        infoModal.classList.add('show');
     }
 
-    // Function to show an error dialog
+    // Function to show an error modal
     function showErrorDialog(message) {
-        const errorDialog = createDialog('error-dialog', message);
-        document.body.appendChild(errorDialog);
+        const errorModal = createModal('error-modal', message);
+        errorModal.classList.add('show');
     }
 
-    // Function to create a dialog
-    function createDialog(className, message) {
-        const dialog = document.createElement('div');
-        dialog.className = className;
-        dialog.innerText = message;
+    // Function to create a modal
+    function createModal(className, message) {
+        const modal = document.createElement('div');
+        modal.className = `modal ${className}`;
+        modal.innerHTML = `<p>${message}</p>`;
+        document.body.appendChild(modal);
 
-        // Close the dialog after 3 seconds
+        // Close the modal after 3 seconds
         setTimeout(() => {
-            dialog.style.display = 'none';
-            document.body.removeChild(dialog);
+            modal.classList.remove('show');
+            document.body.removeChild(modal);
         }, 3000);
 
-        return dialog;
+        return modal;
     }
 
     // Handle user cheating (changing tab, opening Google Assistant, closing browser)
