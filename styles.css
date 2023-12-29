@@ -19,9 +19,14 @@ header {
     padding: 10px;
 }
 
+/* Add this style to strikeout text */
+.strike {
+    text-decoration: line-through;
+}
+
 .level-timeline {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column; /* Display buttons in a vertical line */
     align-items: center;
     padding: 20px;
 }
@@ -47,7 +52,7 @@ button:hover {
     background-color: #45a049;
 }
 
-
+/* Add more styling as needed */
 
 footer {
     background-color: #333;
